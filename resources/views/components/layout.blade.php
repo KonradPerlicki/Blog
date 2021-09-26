@@ -165,7 +165,14 @@
                             </div>
                         </li>
                         <!-- Nav item 5 link-->
-                        <li class="nav-item">	<a class="nav-link" href="docs/alerts.html">Components</a></li>
+                        @auth
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="user" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $user->username }}</a>
+                                <ul class="dropdown-menu" aria-labelledby="user">
+                                    <li> <a class="dropdown-item" href="post-list.html">Post all</a> </li>
+                                </ul>
+                            </li>
+                        @endauth
                     </ul>
                 </div>
                 <!-- Main navbar END -->
@@ -179,9 +186,24 @@
                         </div>
                     </div>
                     <!-- Nav Button -->
-                    <div class="nav-item d-none d-md-block">
-                        <a href="#" class="btn btn-sm btn-danger mb-0 mx-2">Subscribe!</a>
-                    </div>
+                    @guest
+                        <div class="nav-item d-none d-md-block">
+                            <a href="{{ route('login') }}" class="btn btn-sm btn-danger-soft mb-0 mx-2">Sign In!</a>
+                        </div>
+                        <div class="nav-item d-none d-md-block">
+                            <a href="{{ route('register') }}" class="btn btn-sm btn-danger mb-0 mx-2">Sign Up!</a>
+                        </div>
+                    @else
+                        <div class="nav-item d-none d-md-block">
+                            <a href="#" class="btn btn-sm btn-danger-soft mb-0 mx-2">Subscribe!</a>
+                        </div>
+                        <div class="nav-item d-none d-md-block">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-danger mb-0 mx-2">Logout</button>
+                            </form>
+                        </div>
+                    @endguest
                     <!-- Nav Search -->
                     <div class="nav-item dropdown nav-search dropdown-toggle-icon-none">
                         <a class="nav-link pe-0 dropdown-toggle" role="button" href="#" id="navSearch" data-bs-toggle="dropdown" aria-expanded="false">
@@ -200,6 +222,12 @@
         </nav>
         <!-- Logo Nav END -->
     </header>
+        @if (session()->has('message'))
+            <div class='alert alert-success text-center'>
+                {{ session()->get('message') }}
+            </div>
+        @endif
+
     <!-- ======================= Header END -->
     <!-- **************** MAIN CONTENT START **************** -->
     {{ $slot }}

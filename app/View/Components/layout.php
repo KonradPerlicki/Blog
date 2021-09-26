@@ -23,6 +23,8 @@ class layout extends Component
      */
     public function render()
     {
-        return view('components.layout');
+        return view('components.layout',[
+            'user' => auth()->user(),
+        ]);
     }
 }
