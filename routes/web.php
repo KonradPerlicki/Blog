@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+require_once 'auth.php';
+
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
