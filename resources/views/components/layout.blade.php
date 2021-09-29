@@ -169,7 +169,15 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="user" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $user->username }}</a>
                                 <ul class="dropdown-menu" aria-labelledby="user">
+                                    <li> <a class="dropdown-item" href="{{ route('user.edit', $user->username) }}">Edit profile</a> </li>
                                     <li> <a class="dropdown-item" href="post-list.html">Post all</a> </li>
+                                    <li class="dropdown-divider"></li>
+                                    <li>
+                                        <form action="{{ route('user.destroy',$user->username) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                        <button type="submit" class="dropdown-item text-danger">Delete account</button> 
+                                    </li>    
                                 </ul>
                             </li>
                         @endauth

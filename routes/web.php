@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,5 @@ require_once 'auth.php';
 Route::get('/', function () {
     return view('index');
 })->name('home');
+
+Route::resource('/user', UserController::class);

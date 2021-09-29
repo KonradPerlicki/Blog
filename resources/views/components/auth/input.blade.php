@@ -1,3 +1,3 @@
-@props(['name','type','value'=>''])
+@props(['name','type','value'=>'' , 'disabled'=>''])
 <label class="form-label" for="{{ $name }}">{{ $slot }}</label>
-<input type="{{ $type }}" value="{{ $value }}" name="{{ $name }}"class="form-control" id="{{ $name }}">
+<input {{ $disabled }} type="{{ $type }}" value="{{ $value }}" name="{{ $name }}"class="form-control" id="{{ $name }}">
