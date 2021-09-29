@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -46,9 +47,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($username)
     {
-        //
+        $user = User::where('username', $username)->first();
+        return view('author', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -57,8 +61,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($username)
     {
+        $user = User::where('username', $username)->first();
+        if($user?->id !== auth()->id()){
+            abort(403,'You don\'t have permission to edit this user');
+        }
         return view('user-edit', [
             'user' => auth()->user(),
         ]);
@@ -75,6 +83,9 @@ class UserController extends Controller
     {
         $user = User::where('username', $username)->first();
 
+        if($user->id !== auth()->id()){
+            abort(403);
+        }
         $attributes = $request->validate([
             'image' => 'nullable|mimes:jpg,png,jpeg|max:2048',
             'username' => ['required', Rule::unique('users','username')->ignore($user->id)],
@@ -88,6 +99,9 @@ class UserController extends Controller
         
         if(isset($request->image)){
             $attributes['image'] = $request->file('image')->store('public/profiles/');
+            if($user->image){
+                Storage::delete($user->image);
+            }
         }
         $user->update($attributes);
 
@@ -102,7 +116,11 @@ class UserController extends Controller
      */
     public function destroy($username)
     {
-        User::where('username', $username)->first()->delete();
+        $user = User::where('username', $username)->first();
+        if($user->id !== auth()->id()){
+            abort(403);
+        }
+        $user->delete();
 
         return redirect()->route('home')->with('message', 'Account deleted successfully');
     }

@@ -15,7 +15,7 @@ Inner intro START -->
 			<form class="mt-4" method="POST" action="{{ route('user.update',$user->username) }}" enctype="multipart/form-data">
 				@if($user->image)
 					<small class="form-text">Current Profile Image</small><br>
-					<img src="{{ $user->profile_image }}" class="img-thumbnail" style="width:200px;height:200px;" >
+					<img src="{{ $user->image_link }}" class="img-thumbnail" style="width:200px;height:200px;" >
 				@endif
 				
 				@csrf

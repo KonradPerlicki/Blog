@@ -30,4 +30,12 @@ class RegisterUserRequest extends FormRequest
             'password' => ['required',Password::default()->mixedCase()->numbers(),'confirmed'],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'email.unique' => 'This email is taken. If you have account, try to sign in.',
+            'username.unique' => 'Username is taken. If you have account, try to sign in.'
+        ];
+    }
 }

@@ -42,7 +42,7 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($password);
     }
 
-    public function getProfileImageAttribute()
+    public function getImageLinkAttribute()
     {
         return Storage::url($this->image);
     }

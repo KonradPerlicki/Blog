@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <!-- Logo START -->
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{route('home')}}">
                     <img class="navbar-brand-item" src="{{ asset('assets/images/logo.jpg') }}" alt="logo" style="width:100px">			
                 </a>
                 <!-- Logo END -->
@@ -169,14 +169,15 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="user" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $user->username }}</a>
                                 <ul class="dropdown-menu" aria-labelledby="user">
+                                    <li> <a class="dropdown-item" href="{{ route('user.show', $user->username) }}">View profile</a> </li>
                                     <li> <a class="dropdown-item" href="{{ route('user.edit', $user->username) }}">Edit profile</a> </li>
-                                    <li> <a class="dropdown-item" href="post-list.html">Post all</a> </li>
                                     <li class="dropdown-divider"></li>
                                     <li>
                                         <form action="{{ route('user.destroy',$user->username) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                        <button type="submit" class="dropdown-item text-danger">Delete account</button> 
+                                            <button type="submit" class="dropdown-item text-danger">Delete account</button> 
+                                        </form>
                                     </li>    
                                 </ul>
                             </li>
