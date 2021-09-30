@@ -21,6 +21,10 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
+        if(auth()->user()->is_admin){
+            return redirect()->route('admin.dashboard')->with('message','Welcome Back!');
+        }
+        
         return redirect()->intended('/')->with('message','Welcome Back '.auth()->user()->username.'!');
     }
 

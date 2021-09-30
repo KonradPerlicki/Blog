@@ -21,3 +21,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('/user', UserController::class);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('can:admin')->name('admin.dashboard');

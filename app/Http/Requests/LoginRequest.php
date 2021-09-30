@@ -45,7 +45,7 @@ class LoginRequest extends FormRequest
 
         if(!$user || !Hash::check($this->password, $user->password)){
             RateLimiter::hit($this->throttleKey());
-
+            
             throw ValidationException::withMessages([
                 'login' => __('auth.failed'),
             ]);

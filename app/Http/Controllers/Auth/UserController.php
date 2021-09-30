@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
@@ -64,8 +65,8 @@ class UserController extends Controller
     public function edit($username)
     {
         $user = User::where('username', $username)->first();
-        if($user?->id !== auth()->id()){
-            abort(403,'You don\'t have permission to edit this user');
+        if(Gate::forUser($user)->denies('my-account')){
+            abort(403);
         }
         return view('user-edit', [
             'user' => auth()->user(),
@@ -83,7 +84,7 @@ class UserController extends Controller
     {
         $user = User::where('username', $username)->first();
 
-        if($user->id !== auth()->id()){
+        if(Gate::forUser($user)->denies('my-account')){
             abort(403);
         }
         $attributes = $request->validate([
@@ -117,7 +118,7 @@ class UserController extends Controller
     public function destroy($username)
     {
         $user = User::where('username', $username)->first();
-        if($user->id !== auth()->id()){
+        if(Gate::forUser($user)->denies('my-account')){
             abort(403);
         }
         $user->delete();
