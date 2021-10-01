@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +34,9 @@ Route::get('/admin/dashboard', function () {
 })->middleware('can:admin')->name('admin.dashboard');
 
 Route::resource('/admin/user', UsersController::class, ['as'=>'admin']);
+Route::resource('/admin/category', CategoryController::class, ['as'=>'admin']);
+Route::resource('/admin/tag', TagController::class, ['as'=>'admin'])->only(['create','store','destroy']);
+
+
+Route::resource('/post', PostController::class);
+

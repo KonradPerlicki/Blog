@@ -123,6 +123,6 @@ class UserController extends Controller
         }
         $user->delete();
 
-        return redirect()->route('home')->with('message', 'Account deleted successfully');
+        return back()->with('message', 'Account deleted successfully');
     }
 }
