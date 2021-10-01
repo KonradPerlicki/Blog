@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,11 @@ Route::get('/', function () {
 
 Route::resource('/user', UserController::class);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+//admin
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard',[
+        'user' => auth()->user()
+    ]);
 })->middleware('can:admin')->name('admin.dashboard');
+
+Route::resource('/admin/user', UsersController::class, ['as'=>'admin']);

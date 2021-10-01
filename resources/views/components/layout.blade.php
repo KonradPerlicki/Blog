@@ -203,9 +203,15 @@
                             <a href="{{ route('register') }}" class="btn btn-sm btn-danger mb-0 mx-2">Sign Up!</a>
                         </div>
                     @else
-                        <div class="nav-item d-none d-md-block">
-                            <a href="#" class="btn btn-sm btn-danger-soft mb-0 mx-2">Subscribe!</a>
-                        </div>
+                        @can('admin')
+                            <div class="nav-item d-none d-md-block">
+                                <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-primary-soft mb-0 mx-2">Go to Dashboard</a>
+                            </div>
+                        @else
+                            <div class="nav-item d-none d-md-block">
+                                <a href="#" class="btn btn-sm btn-primary-soft mb-0 mx-2">Subscribe!</a>
+                            </div>
+                        @endcan
                         <div class="nav-item d-none d-md-block">
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
@@ -231,11 +237,7 @@
         </nav>
         <!-- Logo Nav END -->
     </header>
-        @if (session()->has('message'))
-            <div class='alert alert-success text-center'>
-                {{ session()->get('message') }}
-            </div>
-        @endif
+        <x-message/>
 
     <!-- ======================= Header END -->
     <!-- **************** MAIN CONTENT START **************** -->

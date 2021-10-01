@@ -13,7 +13,10 @@ Blog
 
 ## Funkcjonalności
 - Własny system rejestracji oraz logowania, można zalogować się za pomocą email lub username (wykorzystuje mutator), 
-- Zalogowany użytkownik może edytować swój profil tj. zdjecie, nazwe uzytkownika (tylko raz na tydzień) oraz opis, 
+- Zalogowany użytkownik może edytować swój profil (zdjecie, nazwe uzytkownika (tylko raz na tydzień) oraz opis), 
+- Przy logowaniu jest opcja przypomnienia hasła, link przychodzi na email podany i można zresetować swoje hasło,  
+- Fabryka użytkowników generuje dodatkowo jednego administratora, który ma dostęp do specjalnego pulpitu,  
+- Administrator ma wgląd na wszystkich użytkowników serwisu oraz może nadawac prawa do publikowania postów, lub usuwać konta,  
 
 
 
