@@ -34,7 +34,8 @@ Route::get('/admin/dashboard', function () {
 })->middleware('can:admin')->name('admin.dashboard');
 
 Route::resource('/admin/user', UsersController::class, ['as'=>'admin']);
-Route::resource('/admin/category', CategoryController::class, ['as'=>'admin']);
+
+Route::resource('/admin/category', CategoryController::class, ['as'=>'admin'])->only(['create','store','destroy']);
 Route::resource('/admin/tag', TagController::class, ['as'=>'admin'])->only(['create','store','destroy']);
 
 

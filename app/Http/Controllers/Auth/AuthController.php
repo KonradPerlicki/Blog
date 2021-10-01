@@ -25,7 +25,7 @@ class AuthController extends Controller
             return redirect()->route('admin.dashboard')->with('message','Welcome Back!');
         }
         
-        return redirect()->intended('/')->with('message','Welcome Back '.auth()->user()->username.'!');
+        return redirect()->route('home')->with('message','Welcome Back '.auth()->user()->username.'!');
     }
 
     /**
