@@ -37,5 +37,9 @@ class AppServiceProvider extends ServiceProvider
             return $user->is_admin;
         });
         
+        Gate::define('can-post', function(User $user){
+            return $user->can_post;
+        });
+        
     }
 }

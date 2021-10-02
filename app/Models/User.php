@@ -47,4 +47,9 @@ class User extends Authenticatable implements CanResetPassword
     {
         return Storage::url($this->image);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

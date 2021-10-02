@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
         \App\Models\User::factory(10)->create();
+        \App\Models\Tag::factory(30)->create();
+        \App\Models\Category::factory(15)->create();
     }
 }

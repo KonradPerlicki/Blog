@@ -169,6 +169,9 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="user" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $user->username }}</a>
                                 <ul class="dropdown-menu" aria-labelledby="user">
+                                @can('can-post')
+                                    <li> <a class="dropdown-item" href="{{ route('post.create') }}">Create new post</a> </li>
+                                @endcan
                                     <li> <a class="dropdown-item" href="{{ route('user.show', $user->username) }}">View profile</a> </li>
                                     <li> <a class="dropdown-item" href="{{ route('user.edit', $user->username) }}">Edit profile</a> </li>
                                     <li class="dropdown-divider"></li>
