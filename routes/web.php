@@ -38,6 +38,6 @@ Route::resource('/admin/user', UsersController::class, ['as'=>'admin']);
 Route::resource('/admin/category', CategoryController::class, ['as'=>'admin'])->only(['create','store','destroy']);
 Route::resource('/admin/tag', TagController::class, ['as'=>'admin'])->only(['create','store','destroy']);
 
-
+Route::get('/admin/posts',[PostController::class,'adminIndex'])->name('admin.post.index');
 Route::resource('/post', PostController::class);
 

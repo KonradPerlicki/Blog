@@ -17,13 +17,16 @@ class Post extends Model
         return $this->belongsTo(User::class,'user_id');
     }
 
-    public function tags()
-    {
-        return $this->hasMany(Tag::class);
-    }
-
     public function category()
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function randomTag()
+    {
+        $classes = ['bg-primary-soft text-primary', 'bg-success-soft text-success',
+        'bg-secondary-soft text-secondary','bg-danger-soft text-danger','bg-warning-soft text-warning',
+        'bg-info-soft text-info','bg-dark-soft text-dark'];
+        return $classes[rand(0,6)]; //try rand number and pick index or array_rand() with lot tags
     }
 }

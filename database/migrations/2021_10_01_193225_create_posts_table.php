@@ -23,7 +23,7 @@ class CreatePostsTable extends Migration
             $table->string('background_image');
             $table->integer('read_time');
             $table->text('content');
-            $table->text('gallery');
+            $table->text('gallery')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

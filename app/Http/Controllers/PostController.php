@@ -26,6 +26,18 @@ class PostController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function adminIndex()
+    {
+        return view('admin.all-posts',[
+            'posts' => Post::with(['author','category'])->get(),
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -54,7 +66,7 @@ class PostController extends Controller
             foreach($request->file('gallery') as $file)
             {
                 $name = $file->getClientOriginalName();
-                $file->storeAs(time(), $name);  
+                $file->storeAs('public/'.time(), $name);  
                 $gallery[] = $name;  
             }
         }

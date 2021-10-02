@@ -11,9 +11,4 @@ class Tag extends Model
 
     protected $guarded = ['id'];
 
-    public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
-
 }
