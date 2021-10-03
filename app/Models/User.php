@@ -38,6 +38,11 @@ class User extends Authenticatable implements CanResetPassword
 
     protected $dates = ['username_changed_at'];
 
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::make($password);

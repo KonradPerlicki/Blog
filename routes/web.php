@@ -24,7 +24,7 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
-Route::resource('/user', UserController::class);
+Route::resource('/user', UserController::class)->except(['index','store','create']);
 
 //admin
 Route::get('/admin/dashboard', function () {
@@ -39,5 +39,7 @@ Route::resource('/admin/category', CategoryController::class, ['as'=>'admin'])->
 Route::resource('/admin/tag', TagController::class, ['as'=>'admin'])->only(['create','store','destroy']);
 
 Route::get('/admin/posts',[PostController::class,'adminIndex'])->name('admin.post.index');
-Route::resource('/post', PostController::class);
+Route::get('/post/{id}/{slug}',[PostController::class,'show'])->name('post.show');
+Route::put('/admin/posts/{id}',[PostController::class,'changeStatus'])->name('admin.post.status');
+Route::resource('/post', PostController::class)->except('show');
 

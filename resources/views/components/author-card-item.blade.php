@@ -24,7 +24,7 @@
                                     <img class="avatar-img rounded-circle" src="{{$user->image_link}}" alt="avatar">
                                 </div>
                             @endif
-							<span class="ms-3">By <a href="{{route('user.show',$user->username)}}" class="stretched-link text-reset btn-link">{{$user->username}}</a></span>
+							<span class="ms-3">By <a href="{{route('user.show',$user)}}" class="stretched-link text-reset btn-link">{{$user->username}}</a></span>
 						</div>
 					</div>
 				</li>

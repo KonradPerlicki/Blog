@@ -33,7 +33,7 @@ class PostController extends Controller
     public function adminIndex()
     {
         return view('admin.all-posts',[
-            'posts' => Post::with(['author','category'])->get(),
+            'posts' => Post::withTrashed()->with(['author','category'])->get(),
         ]);
     }
 
@@ -87,9 +87,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id, $slug)
     {
-        return view('post-single');
+        $post = Post::where('id', $id)->where('slug', $slug)->with('category','author')->first();
+        $categories = Category::inRandomOrder()->take(5)->get();
+        return view('post.post-single',[
+            'post' => $post,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -121,8 +126,21 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        Post::withTrashed()->find($id)->forceDelete();
+        return back()->with('message','Post deleted successfully');
+    }
+
+    public function changeStatus($id)
+    {
+        $post = Post::withTrashed()->find($id);
+
+        if($post->deleted_at){
+            $post->restore();
+        }else{
+            $post->delete();
+        }
+        return back()->with('message','Status changed successfully');
     }
 }

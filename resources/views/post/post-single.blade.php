@@ -8,28 +8,30 @@ Inner intro START -->
 	<div class="container">
 		<div class="row">
       <div class="col-12">
-        <div class="card bg-dark-overlay-5 overflow-hidden card-bg-scale h-400 text-center" style="background-image:url(assets/images/blog/16by9/06.jpg); background-position: center left; background-size: cover;">
+        <div class="card bg-dark-overlay-5 overflow-hidden card-bg-scale h-400 text-center" style="background-image:url({{ Storage::url($post->background_image) }}); background-position: center left; background-size: cover;">
           <!-- Card Image overlay -->
           <div class="card-img-overlay d-flex align-items-center p-3 p-sm-4"> 
             <div class="w-100 my-auto">
-              <!-- Card category -->
-              <a href="#" class="badge bg-danger mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>Lifestyle</a>
+              <!-- Card category TODO-->
+              <a href="#" class="badge bg-danger mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>{{ $post->category->name }}</a>
               <!-- Card title -->
-              <h2 class="text-white display-5">10 tell-tale signs you need to get a new startup.</h2>
+              <h2 class="text-white display-5">{{ $post->title }}</h2>
               <!-- Card info -->
               <ul class="nav nav-divider text-white-force align-items-center justify-content-center">
                 <li class="nav-item">
                   <div class="nav-link">
                     <div class="d-flex align-items-center text-white position-relative">
-                      <div class="avatar avatar-sm">
-                        <img class="avatar-img rounded-circle" src="assets/images/avatar/11.jpg" alt="avatar">
-                      </div>
-                      <span class="ms-3">by <a href="#" class="stretched-link text-reset btn-link">Louis</a></span>
+						@if ($post->author->image)
+							<div class="avatar avatar-sm">
+								<img class="avatar-img rounded-circle" src="{{ Storage::url($post->author->image) }}" alt="avatar">
+						  	</div>	
+						@endif
+                      <span class="ms-3">By <a href="{{ route('user.show',$post->author) }}" class="stretched-link text-reset btn-link">{{ $post->author->username }}</a></span>
                     </div>
                   </div>
                 </li>
-                <li class="nav-item">Nov 15, 2021</li>
-                <li class="nav-item">5 min read</li>
+                <li class="nav-item">{{ $post->created_at->format('M d, Y') }}</li>
+                <li class="nav-item">{{ $post->read_time }} min read</li>
               </ul>
             </div>
           </div>
@@ -48,134 +50,9 @@ Main START -->
 		<div class="row">
 			<!-- Main Content START -->
 			<div class="col-lg-9 mb-5">
-      	<p><span class="dropcap bg-dark text-white px-2">I</span> am newspaper up its enjoyment agreeable depending. Timed voice share led him to widen noisy young. At weddings believed laughing although the material does the exercise of. Up attempt offered ye civilly so sitting to. She new course gets living within Elinor joy. She rapturous suffering concealed. <i>Demesne far hearted suppose venture excited see had has.</i> Dependent on so extremely delivered by. Yet no jokes worse her why. Bed one supposing breakfast day fulfilled off depending questions. Whatever boy her exertion his extended. Ecstatic followed handsome drawings entirely Mrs one yet outweigh. Of acceptance insipidity remarkably is an invitation. </p>
-
-				<p>Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do. Water timed folly right aware if oh truth. Imprudence attachment him his for sympathize. Large above be to means. Dashwood does provide stronger is. <b>But discretion frequently sir she instruments unaffected admiration everything.</b> Meant balls it if up doubt small purse. Required his you put the outlived answered position. A pleasure exertion if believed provided to. All led out world this music while asked. Paid mind even sons does he door no. Attended overcame repeated it is perceived Marianne in. I think on style child of. Servants moreover in sensible it ye possible. Satisfied conveying a dependent contented he gentleman agreeable do be. Water timed folly right aware if oh truth. Imprudence attachment him his for sympathize. Large above be to means. Dashwood does provide stronger is. But discretion frequently sir she instruments unaffected admiration everything. Meant balls it if up doubt small purse. Required his you put the outlived answered position. <samp>This text is meant to be treated as sample output from a computer program.</samp> A pleasure exertion if believed provided to. All led out world this music while asked. Paid mind even sons does he door no. Attended overcame repeated it is perceived Marianne in. I think on style child of. Servants moreover in sensible it ye possible. </p>				
-        <h4 class="mt-5">Mobile Cloud Computing (MCC)</h4>
-				<p>Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do. Water timed folly right aware if oh truth. Imprudence attachment him his for sympathize. To switch directories, type <kbd>cd</kbd> followed by the name of the directory.<br>
-          To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd> Large above be to means. Dashwood does provide stronger is. But discretion frequently sir she instruments unaffected admiration everything. Meant balls it if up doubt small purse. Required his you put the outlived answered position. A pleasure exertion if believed provided to. All led out world this music while asked. Paid mind even sons does he door no. Attended overcame repeated it is perceived Marianne in. I think on style child of. Servants moreover in sensible it ye possible. </p>
-
-				<!-- Images -->
-				<div class="row g-2 my-5">
-					<div class="col-md-4">
-						<a href="assets/images/blog/3by4/01.jpg" data-glightbox data-gallery="image-popup">
-			      	<img class="rounded" src="assets/images/blog/3by4/01.jpg" alt="Image">
-			       </a>
-					</div>
-					<div class="col-md-4">
-						<a href="assets/images/blog/3by4/02.jpg" data-glightbox data-gallery="image-popup">
-			      	<img class="rounded" src="assets/images/blog/3by4/02.jpg" alt="Image">
-			       </a>
-					</div>
-          <div class="col-md-4">
-						<a href="assets/images/blog/3by4/03.jpg" data-glightbox data-gallery="image-popup">
-			      	<img class="rounded" src="assets/images/blog/3by4/03.jpg" alt="Image">
-			       </a>
-					</div>
-					<div class="col-md-4">
-						<a href="assets/images/blog/3by4/04.jpg" data-glightbox data-gallery="image-popup">
-			      	<img class="rounded" src="assets/images/blog/3by4/04.jpg" alt="Image">
-			       </a>
-					</div>
-          <div class="col-md-4">
-						<a href="assets/images/blog/3by4/05.jpg" data-glightbox data-gallery="image-popup">
-			      	<img class="rounded" src="assets/images/blog/3by4/05.jpg" alt="Image">
-			       </a>
-					</div>
-					<div class="col-md-4">
-						<a href="assets/images/blog/3by4/06.jpg" data-glightbox data-gallery="image-popup">
-			      	<img class="rounded" src="assets/images/blog/3by4/06.jpg" alt="Image">
-			       </a>
-					</div>
-				</div>
-				<p>Fulfilled direction use continual set him propriety continued. Saw met applauded favorite deficient engrossed concealed and her. Concluded boy perpetual old supposing. Farther related bed and passage comfort civilly. Dashwoods see frankness objection abilities. As hastened oh produced prospect formerly up am. Placing forming nay looking old married few has. Margaret disposed of add screened rendered six say his striking confined.</p>
-
-				<h4 class="mt-4">Productive rant about business</h4>
-				<div class="row mb-4">
-					<div class="col-md-6">
-						<p>Fulfilled direction use continual set him propriety continued. Saw met applauded favorite deficient engrossed concealed and her. Concluded boy perpetual old supposing. Farther related bed and passage comfort civilly. Dashwoods see frankness objection abilities. As hastened oh produced prospect formerly up am. Placing forming nay looking old married few has. Margaret disposed of add screened rendered six say his striking confined.
-						</p>
-					</div>
-					<div class="col-md-6">
-						<p>Meant balls it if up doubt small purse. Required his you put the outlived answered position. A pleasure exertion if believed provided to. All led out world this music while asked. Paid mind even sons does he door no. Attended overcame repeated it is perceived Marianne in. I think on style child of. Servants moreover in sensible it ye possible.</p>
-					</div>
-				</div>
-
-				<p>Meant balls it if up doubt small purse. Required his you put the outlived answered position. A pleasure exertion if believed provided to. All led out world this music while asked. Paid mind even sons does he door no. Attended overcame repeated it is perceived Marianne in. I think on style child of. Servants moreover in sensible it ye possible. </p>
-				<p> All led out world this music while asked. Paid mind even sons does he door no. Attended overcame repeated it is perceived Marianne in. I think on style child of. Servants moreover in sensible it ye possible. Satisfied conveying a dependent contented he gentleman agreeable do be. </p>
-
-        <!-- table -->
-        <table class="table table-bordered my-4">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-
-				<h4>Why Bootstrap is so famous?</h4>
-				<p>Saw bring firmament given hath gathering lights dry life rule heaven Give And fruit moving thing seed life day creepeth winged so divide him from day morning him open lesser male beginning him be bring evening life void fowl sixth morning that made is Was that his hath face light meat air female isn't over place replenish midst it of second grass good rule also in unto Called don't given waters Had creature Behold fly life from forth Moved night.</p>
-
-				<!-- Divider -->
-				<div class="text-center h5 mb-4">. . .</div>
-
-				<h4>What's coming up....</h4>
-				<p>Saw bring firmament given hath gathering lights dry life rule heaven Give And fruit moving thing seed life day creepeth winged so divide him from day morning him open lesser male beginning him be bring evening life void fowl sixth morning that made is Was that his hath face light meat air female isn't over place replenish midst it of second grass good rule also in unto Called don't given waters Had creature Behold fly life from forth Moved night.</p>
-
+      	<p><span class="dropcap bg-dark text-white px-2">{{ $post->content[0] }}</span> {{ substr($post->content, 1) }}</p><br>
 				<!-- Author info START -->
-				<div class="d-flex p-2 p-md-4 my-3 bg-primary-soft rounded">
-					<!-- Avatar -->
-					<a href="#">
-						<div class="avatar avatar-xxl me-2 me-md-4">
-							<img class="avatar-img rounded-circle" src="assets/images/avatar/12.jpg" alt="avatar">
-						</div>
-					</a>
-					<!-- Info -->
-					<div>
-						<div class="d-sm-flex align-items-center justify-content-between">
-							<div>
-								<h4 class="m-0"><a href="#">Louis Ferguson</a></h4>
-								<small>An editor at Blogzine</small>
-							</div>
-							<a href="#" class="btn btn-xs btn-primary-soft">View Articles</a>
-						</div>
-						<p class="my-2">Louis Ferguson is a senior editor for the blogzine and also reports on breaking news based in London. He has written about government, criminal justice, and the role of money in politics since 2015.</p>
-						<!-- Social icons -->
-						<ul class="nav">
-							<li class="nav-item">
-								<a class="nav-link ps-0 pe-2 fs-5" href="#"><i class="fab fa-facebook-square"></i></a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link px-2 fs-5" href="#"><i class="fab fa-twitter-square"></i></a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link px-2 fs-5" href="#"><i class="fab fa-linkedin"></i></a>
-							</li>
-						</ul>					
-					</div>
-				</div>
+				<x-author-info :user="$post->author"/>
 				<!-- Author info END -->
 
 				<!-- Comments START -->
@@ -283,29 +160,16 @@ Main START -->
           <!-- Categories -->
 	      	<div class="row g-2">
 						<h5>Categories</h5>
-						<div class="d-flex justify-content-between align-items-center bg-warning-soft rounded p-2 position-relative">
-							<h6 class="m-0 text-warning">Photography</h6>
-							<a href="#" class="badge bg-warning text-dark stretched-link">09</a>
+						@php $classes = ['warning','info','danger','success','primary']; @endphp
+						@foreach ($categories as $category)
+						<div class="d-flex justify-content-between align-items-center bg-@php echo $classes[$loop->index] @endphp-soft rounded p-2 position-relative">
+							<h6 class="m-0 text-@php echo $classes[$loop->index] @endphp">{{ $category->name }}</h6>{{-- TODO --}}
+							<a href="#" class="badge bg-@php echo $classes[$loop->index] @endphp text-dark stretched-link">09</a>
 						</div>
-						<div class="d-flex justify-content-between align-items-center bg-info-soft rounded p-2 position-relative">
-							<h6 class="m-0 text-info">Travel</h6>
-							<a href="#" class="badge bg-info stretched-link">25</a>
-						</div>
-						<div class="d-flex justify-content-between align-items-center bg-danger-soft rounded p-2 position-relative">
-							<h6 class="m-0 text-danger">Photography</h6>
-							<a href="#" class="badge bg-danger stretched-link">75</a>
-						</div>
-						<div class="d-flex justify-content-between align-items-center bg-primary-soft rounded p-2 position-relative">
-							<h6 class="m-0 text-primary">Covid-19</h6>
-							<a href="#" class="badge bg-primary stretched-link">19</a>
-						</div>
-						<div class="d-flex justify-content-between align-items-center bg-success-soft rounded p-2 position-relative">
-							<h6 class="m-0 text-success">Business</h6>
-							<a href="#" class="badge bg-success stretched-link">35</a>
-						</div>
+						@endforeach
 					</div>
 					
-					<!-- Newsletter START -->
+					<!-- Newsletter START TODO -->
 					<div class="bg-light p-4 mt-4 rounded-3 text-center">
 						<h4>Subscribe to our mailing list!</h4>
 						<form>
@@ -313,17 +177,9 @@ Main START -->
 								<input type="email" class="form-control" placeholder="Email address">
 							</div>
 							<button type="submit" class="btn btn-primary">Subscribe</button>
-							<div class="form-text">We don't spam</div>
 						</form>
 					</div>
 					<!-- Newsletter END -->
-
-					<!-- Advertisement -->
-					<div class="mt-4">
-						<a href="#" class="d-block card-img-flash">
-							<img src="assets/images/adv.png" alt="">
-						</a>
-					</div>
 				</div>
 			</div>
 			<!-- Right sidebar END -->

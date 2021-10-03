@@ -21,6 +21,7 @@
                             <th>Category</th>
                             <th>Read time</th>
                             <th>Has gallery</th>
+                            <th>Status</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
@@ -35,6 +36,7 @@
                             <th>Category</th>
                             <th>Read time</th>
                             <th>Has gallery</th>
+                            <th>Status</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
@@ -54,8 +56,21 @@
                                 <td>{{ $post->category->name }}</td>
                                 <td>{{ $post->read_time .' '. Str::plural('min', $post->read_time) }}</td>
                                 <td>{{ $post->gallery ? 'Yes' : 'No' }}</td>
+                                <td>{!! $post->deleted_at ? '<p class="bg-danger">Unactive</p>' : '<p class="bg-success">Active</p>' !!}</td>
                                 <td>{{ $post->created_at }}</td>
-                                <td>DELETE</td>
+                                <td>
+                                    <a class="btn btn-secondary" href="{{ route('post.show', ['id' => $post->id, 'slug' => $post->slug]) }}">View</a>
+                                    <form action="{{ route('admin.post.status',$post->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-primary">Change status</button> 
+                                    </form>
+                                    <form action="{{ route('post.destroy',$post->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete permanently</button> 
+                                    </form>
+                                </td>
                             </tr>
                         @empty
                             No posts found

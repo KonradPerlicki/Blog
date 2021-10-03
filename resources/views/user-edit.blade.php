@@ -12,7 +12,7 @@ Inner intro START -->
 			<h2>Edit your profile </h2>
 			<x-errors/>
 			<!-- Form START -->
-			<form class="mt-4" method="POST" action="{{ route('user.update',$user->username) }}" enctype="multipart/form-data">
+			<form class="mt-4" method="POST" action="{{ route('user.update',$user) }}" enctype="multipart/form-data">
 				@if($user->image)
 					<small class="form-text">Current Profile Image</small><br>
 					<img src="{{ $user->image_link }}" class="img-thumbnail" style="width:200px;height:200px;" >

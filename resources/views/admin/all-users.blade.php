@@ -52,8 +52,8 @@
                             </td>
                             <td>{{ $user->created_at }}</td>
                             <td>
-                                <a href="{{ route('user.show', $user->username) }}" class="btn btn-primary">View</a>
-                                <form action="{{ route('user.destroy',$user->username) }}" method="POST">
+                                <a href="{{ route('user.show', $user) }}" class="btn btn-primary">View</a>
+                                <form action="{{ route('user.destroy',$user) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button> 

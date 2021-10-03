@@ -172,11 +172,11 @@
                                 @can('can-post')
                                     <li> <a class="dropdown-item" href="{{ route('post.create') }}">Create new post</a> </li>
                                 @endcan
-                                    <li> <a class="dropdown-item" href="{{ route('user.show', $user->username) }}">View profile</a> </li>
-                                    <li> <a class="dropdown-item" href="{{ route('user.edit', $user->username) }}">Edit profile</a> </li>
+                                    <li> <a class="dropdown-item" href="{{ route('user.show', $user) }}">View profile</a> </li>
+                                    <li> <a class="dropdown-item" href="{{ route('user.edit', $user) }}">Edit profile</a> </li>
                                     <li class="dropdown-divider"></li>
                                     <li>
-                                        <form action="{{ route('user.destroy',$user->username) }}" method="POST">
+                                        <form action="{{ route('user.destroy',$user) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="dropdown-item text-danger">Delete account</button> 
