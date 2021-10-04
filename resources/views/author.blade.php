@@ -59,19 +59,52 @@ Main content START -->
 			<div class="col-12">
 				<div class="row gy-4">
 					<!-- Card item START -->
-					<x-author-card-item :user="$user"/>
-					<x-author-card-item :user="$user" />
-					<x-author-card-item :user="$user" />
-					<x-author-card-item :user="$user" />
+					@forelse ($posts as $post)
+						<x-author-card-item :post="$post"/>
+					@empty
+						This user does not have any posts
+					@endforelse
 					<!-- Card item END -->
-					<!-- Load more START -->
-					<div class="col-12 text-center mt-5">
-						<button type="button" class="btn btn-primary-soft">Load more post <i class="bi bi-arrow-down-circle ms-2 align-middle"></i></button>
-					</div>
-					<!-- Load more END -->
 				</div>
 			</div>
 			<!-- Main Post END -->
+			@if($user->comments->count())
+				<div class="mt-5">
+					<h3>{{ $user->comments->count() .' '. Str::plural('comment', $user->comments->count()) }}</h3>
+					<!-- Comment-->
+					@foreach ($user->comments as $comment)
+						@if(auth()->user()?->can('im-author', $comment))
+							<x-comment :comment="$comment" :canDelete="true"/>
+						@else
+							<x-comment :comment="$comment"/>
+						@endif
+					@endforeach
+				</div>
+				@endif
+			@auth
+				@if (auth()->id() !== $user->id)
+					<!-- Reply START -->
+					<div class="mt-5">
+						<h3>Leave a comment</h3>
+						<form class="row g-3 mt-2" method="post" action="{{ route('comment.store', ['type'=>'user','id'=>$user->id]) }}">
+						@csrf
+						<div class="col-12">
+							<label class="form-label">Your Comment *</label>
+							<textarea name="content" class="form-control" rows="3"></textarea>
+						</div>
+						<div class="col-12">
+							<button type="submit" class="btn btn-primary">Post comment</button>
+						</div>
+						</form>
+					</div>
+					<!-- Reply END -->
+					@endif
+			@else
+			<br>
+				<div class="">
+					<h3>Sign In to leave a comment about this user!</h3>
+				</div>
+			@endauth
 		</div> <!-- Row end -->
 	</div>
 </section>

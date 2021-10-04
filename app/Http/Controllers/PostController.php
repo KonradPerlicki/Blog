@@ -61,17 +61,18 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        $prefix = time();
         if($request->hasfile('gallery'))
         {
             foreach($request->file('gallery') as $file)
             {
                 $name = $file->getClientOriginalName();
-                $file->storeAs('public/'.time(), $name);  
-                $gallery[] = $name;  
+                $file->storeAs('public/'.$prefix, $name);  
+                $gallery[] = $prefix.'/'.$name;  
             }
         }
         $attributes = $request->validated();
-        $attributes['background_image'] = $request->file('background_image')->storeAs(time(),$file->getClientOriginalName());
+        $attributes['background_image'] = $request->file('background_image')->storeAs('public/'.$prefix, $file->getClientOriginalName());
         $attributes['gallery'] = serialize($gallery);
         $attributes['tags'] = serialize($attributes['tags']);
         $attributes['slug'] = Str::slug($request->title);
@@ -89,7 +90,7 @@ class PostController extends Controller
      */
     public function show($id, $slug)
     {
-        $post = Post::where('id', $id)->where('slug', $slug)->with('category','author')->first();
+        $post = Post::with('comments','author')->where('id', $id)->where('slug', $slug)->with('category','author')->first();
         $categories = Category::inRandomOrder()->take(5)->get();
         return view('post.post-single',[
             'post' => $post,

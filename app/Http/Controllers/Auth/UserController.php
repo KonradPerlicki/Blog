@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -21,6 +22,7 @@ class UserController extends Controller
     {
         return view('author', [
             'user' => $user,
+            'posts' => Post::with(['author','category'])->where('user_id',$user->id)->latest()->get(),
         ]);
     }
 

@@ -17,6 +17,9 @@ Blog
 - Przy logowaniu jest opcja przypomnienia hasła, link przychodzi na email podany i można zresetować swoje hasło,  
 - Fabryka użytkowników generuje dodatkowo jednego administratora, który ma dostęp do specjalnego pulpitu,  
 - Administrator ma wgląd na wszystkich użytkowników serwisu oraz może nadawac prawa do publikowania postów, lub usuwać konta,  
+- Administrator ma wgląd do wszystkich postów, może je deaktywować (soft delete), lub usunąć całkowicie,
+- Komentarze mają polimorficzną relację z użytkownikiem i postem (można komentować posty jak i profil danego użytkownika), admin może usuwać wszystkie posty, autor danego posta może usuwać wszystkie komentarze pod tym postem, autor komentarza może usunąć własny komentarz, 
+
 
 
 

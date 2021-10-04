@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -41,5 +42,9 @@ class AppServiceProvider extends ServiceProvider
             return $user->can_post;
         });
         
+        Gate::define('im-author', function(User $user, Comment $comment){
+            //checks if its author of the post or author of the comment
+            return ($comment->commentable->user_id === $user->id  || $comment->user_id === $user->id);
+        });
     }
 }
